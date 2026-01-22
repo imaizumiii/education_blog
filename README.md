@@ -1,8 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TEKITO - てきとーに勉強する学習サイト
 
-## Getting Started
+## プロジェクト概要
 
-First, run the development server:
+**TEKITO**は、スマホユーザーをターゲットにした気軽に勉強できる学習サイトです。「てきとーに勉強してほしい」という願いから名付けられました。各機能は即レスポンスを意識した設計となっています。
+
+## 対象プラットフォーム
+
+- **メインターゲット**: スマートフォンユーザー
+- **デザイン**: モバイルファースト、最大幅md、中央揃え
+
+## 主要機能
+
+- **レッスン**: テキスト、動画、インタラクティブな学習コンテンツ
+- **クイズ**: 4択問題で理解度を確認
+- **PDFツール**: 教育者向けの問題集生成機能
+
+詳細な機能仕様については [PROJECT.md](./PROJECT.md) を参照してください。
+
+## 技術スタック
+
+- **フレームワーク**: Next.js 16.1.4
+- **UIライブラリ**: React 19.2.3
+- **スタイリング**: Tailwind CSS 4
+- **アイコン**: lucide-react
+- **言語**: TypeScript
+
+## セットアップ
+
+### 必要な環境
+
+- Node.js 18以上
+- npm / yarn / pnpm / bun
+
+### インストール
+
+```bash
+npm install
+```
+
+### 開発サーバーの起動
 
 ```bash
 npm run dev
@@ -14,23 +50,39 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いて確認してください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ビルド
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+### 本番環境での起動
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## プロジェクト構造
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+education_blog/
+├── app/              # Next.js App Router
+│   ├── page.tsx      # ホームページ
+│   └── ...
+├── public/           # 静的ファイル
+└── ...
+```
 
-## Deploy on Vercel
+## デプロイ
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Vercel Platformを使用してデプロイすることを推奨します。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/hello-world)
+
+詳細は [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) を参照してください。
+
+## ドキュメント
+
+- [PROJECT.md](./PROJECT.md) - プロジェクトの詳細仕様と実装計画
