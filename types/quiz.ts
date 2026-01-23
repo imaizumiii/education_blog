@@ -14,7 +14,3 @@ export type Quiz = {
   questions: QuizQuestion[];
   relatedLessons?: string[];
 };
-
-export type QuizData = {
-  quizzes: Quiz[];
-};

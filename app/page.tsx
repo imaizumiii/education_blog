@@ -2,6 +2,7 @@
 
 import { BookOpen, FileText, Search, User, Home as HomeIcon, HelpCircle } from "lucide-react";
 import Link from "next/link";
+import { Header } from "@/components/Header";
 
 export default function Home() {
   // 現在の時刻に基づいて挨拶を生成
@@ -17,12 +18,7 @@ export default function Home() {
       {/* アプリコンテナ - モバイルビュー中心、最大幅md、中央揃え */}
       <div className="w-full max-w-md mx-auto bg-white min-h-screen flex flex-col shadow-lg">
         {/* ヘッダー */}
-        <header className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
-          <h1 className="text-xl font-bold text-teal-600">TEKITO</h1>
-          <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-            <User className="w-6 h-6 text-gray-700" />
-          </button>
-        </header>
+        <Header />
 
         {/* メインコンテンツ */}
         <main className="flex-1 px-4 py-6 pb-24 overflow-y-auto">
