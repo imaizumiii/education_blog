@@ -68,7 +68,7 @@ export default function Home() {
 
               {/* Quizzes カード */}
               <Link
-                href="/quizzes"
+                href="/quiz"
                 className="bg-white border-2 border-orange-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-orange-400 transition-all active:scale-[0.98]"
               >
                 <div className="flex items-center gap-4">
