@@ -36,8 +36,8 @@ export default async function QuizPlayPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-       <div className="w-full max-w-md mx-auto bg-white min-h-screen flex flex-col shadow-lg">
+    <div className="min-h-screen bg-gray-50 dark:bg-black flex flex-col">
+       <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-950 min-h-screen flex flex-col shadow-lg dark:shadow-none dark:border-x dark:border-gray-800">
         <Header />
         <div className="flex-1 px-4 py-6">
           <QuizGame quiz={quiz} />

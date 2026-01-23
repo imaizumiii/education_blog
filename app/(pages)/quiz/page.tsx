@@ -35,13 +35,13 @@ export default async function QuizPage() {
   const quizzes = await getQuizzes();
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <div className="w-full max-w-md mx-auto bg-white min-h-screen flex flex-col shadow-lg">
+    <div className="min-h-screen bg-gray-50 dark:bg-black flex flex-col">
+      <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-950 min-h-screen flex flex-col shadow-lg dark:shadow-none dark:border-x dark:border-gray-800">
         <Header />
         <div className="flex-1 px-4 py-6">
           <div className="mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Quiz Collection</h1>
-            <p className="text-gray-600 text-sm">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Quiz Collection</h1>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
               知識を確認するためのクイズ集です。興味のあるトピックを選んで挑戦してみましょう。
             </p>
           </div>
@@ -49,8 +49,8 @@ export default async function QuizPage() {
           {quizzes.length > 0 ? (
             <QuizList quizzes={quizzes} />
           ) : (
-            <div className="text-center py-10 bg-gray-50 rounded-lg">
-              <p className="text-gray-500">現在利用可能なクイズはありません。</p>
+            <div className="text-center py-10 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <p className="text-gray-500 dark:text-gray-400">現在利用可能なクイズはありません。</p>
             </div>
           )}
         </div>

@@ -57,11 +57,6 @@ export const QuizGame: React.FC<QuizGameProps> = ({ quiz }) => {
 
   return (
     <div>
-      <div className="mb-6 text-center">
-        <h1 className="text-2xl font-bold text-gray-800">{quiz.title}</h1>
-        <p className="text-gray-500 mt-2">{quiz.category}</p>
-      </div>
-
       <QuestionCard
         question={currentQuestion}
         currentQuestionIndex={currentQuestionIndex}
