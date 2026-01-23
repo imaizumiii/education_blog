@@ -21,18 +21,18 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   onNext,
 }) => {
   return (
-    <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-6 max-w-2xl w-full mx-auto border border-gray-100 dark:border-gray-800">
-      <div className="mb-4 text-sm text-gray-500 dark:text-gray-400 font-medium">
+    <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-4 sm:p-6 max-w-2xl w-full mx-auto border border-gray-100 dark:border-gray-800 flex flex-col h-full max-h-[80vh] overflow-y-auto">
+      <div className="mb-2 text-xs text-gray-500 dark:text-gray-400 font-medium shrink-0">
         Question {currentQuestionIndex + 1} / {totalQuestions}
       </div>
       
-      <h2 className="text-xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+      <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 shrink-0">
         {question.question}
       </h2>
 
-      <div className="space-y-3">
+      <div className="space-y-2 mb-4">
         {question.options.map((option, index) => {
-          let buttonClass = "w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ";
+          let buttonClass = "w-full text-left p-3 text-sm sm:text-base rounded-lg border-2 transition-all duration-200 ";
           
           if (showExplanation) {
             if (index === question.correct) {
@@ -64,17 +64,17 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       </div>
 
       {showExplanation && (
-        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800 animate-in fade-in slide-in-from-top-2">
-          <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-2">解説</h3>
-          <p className="text-blue-800 dark:text-blue-200">{question.explanation}</p>
-          <div className="mt-4 flex justify-end">
-            <button
-              onClick={onNext}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors"
-            >
-              次へ進む
-            </button>
+        <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-800 animate-in fade-in slide-in-from-top-2">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800 text-sm">
+            <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-1">解説</h3>
+            <p className="text-blue-800 dark:text-blue-200">{question.explanation}</p>
           </div>
+          <button
+            onClick={onNext}
+            className="w-full mt-3 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors text-sm"
+          >
+            次へ進む
+          </button>
         </div>
       )}
     </div>
