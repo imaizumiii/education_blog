@@ -1,5 +1,6 @@
 import { QuizGame } from '@/components/quiz/QuizGame';
 import { Quiz } from '@/types/quiz';
+import { parseQuizCsv } from '@/utils/csvParser';
 import fs from 'fs';
 import path from 'path';
 import { notFound } from 'next/navigation';
@@ -7,20 +8,14 @@ import { Header } from '@/components/Header';
 
 async function getQuiz(id: string) {
   const safeId = path.basename(id);
-  const filePath = path.join(process.cwd(), 'data', 'quizzes', `${safeId}.json`);
+  const filePath = path.join(process.cwd(), 'data', 'quizzes', `${safeId}.csv`);
   
   if (!fs.existsSync(filePath)) {
     return null;
   }
   
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  try {
-    const quiz: Quiz = JSON.parse(fileContents);
-    return quiz;
-  } catch (e) {
-    console.error(`Failed to parse ${filePath}`, e);
-    return null;
-  }
+  return parseQuizCsv(fileContents);
 }
 
 type Props = {

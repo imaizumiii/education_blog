@@ -1,5 +1,6 @@
 import { QuizList } from '@/components/quiz/QuizList';
 import { Quiz } from '@/types/quiz';
+import { parseQuizCsv } from '@/utils/csvParser';
 import fs from 'fs';
 import path from 'path';
 import { Header } from '@/components/Header';
@@ -12,20 +13,15 @@ async function getQuizzes() {
   
   const fileNames = fs.readdirSync(quizzesDirectory);
   const allQuizzes = fileNames.map((fileName) => {
-    // Only process .json files
-    if (!fileName.endsWith('.json')) {
+    // Only process .csv files
+    if (!fileName.endsWith('.csv')) {
       return null;
     }
     
     const fullPath = path.join(quizzesDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    try {
-      const quiz: Quiz = JSON.parse(fileContents);
-      return quiz;
-    } catch (e) {
-      console.error(`Failed to parse ${fileName}`, e);
-      return null;
-    }
+    
+    return parseQuizCsv(fileContents);
   }).filter((quiz): quiz is Quiz => quiz !== null);
   
   return allQuizzes;
