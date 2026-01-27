@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from '@/components/Header';
-import { BookOpen, Clock, ChevronRight } from 'lucide-react';
+import { BookOpen, Clock, ChevronRight, Calculator } from 'lucide-react';
 import Link from 'next/link';
 
 interface Lesson {
@@ -21,16 +21,9 @@ const SAMPLE_LESSONS: Lesson[] = [
   },
   {
     id: 'lesson-2',
-    title: 'Lesson 2: 挨拶と日常会話',
-    description: '朝、昼、晩の挨拶や、別れ際の表現、調子を尋ねるフレーズを学びます。',
+    title: 'Lesson 2: Physics & Math',
+    description: '物理を通して三角関数（Cosine）を学びます。力の分解を英語で理解しましょう。',
     duration: '15 min',
-    level: 'Beginner',
-  },
-  {
-    id: 'lesson-3',
-    title: 'Lesson 3: 買い物をする',
-    description: '店員さんへの尋ね方、値段の確認、支払いのやり取りなど、ショッピングで使える英語です。',
-    duration: '20 min',
     level: 'Intermediate',
   },
 ];
