@@ -19,8 +19,6 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({ data, onComplete }) 
   const currentSlide = data.slides[currentIndex];
 
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    // インタラクティブ図の操作中はスワイプを無効化したいが、
-    // ここでは簡易的に「Y方向の移動量が大きい場合のみスライド遷移」とする
     const threshold = 50;
     if (info.offset.y < -threshold) {
       nextSlide();
@@ -120,7 +118,6 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
   // Helper to render text with math support
   const renderText = (text?: string) => {
     if (!text) return null;
-    // インタラクティブ図のプレースホルダーがある場合は除外してテキストのみ表示
     const cleanText = text.replace('[Image: Force Decomposition]', '').trim();
     if (!cleanText) return null;
     
@@ -137,7 +134,7 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
       return (
         <div 
           className="my-4" 
-          onPointerDown={(e) => e.stopPropagation()} // スライダー操作時にスワイプが反応しないようにする
+          onPointerDown={(e) => e.stopPropagation()} 
           onTouchStart={(e) => e.stopPropagation()}
         >
           <InteractiveForceDiagram />
@@ -187,7 +184,7 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
       );
 
     case 'scene':
-    case 'content': // contentタイプもここに追加
+    case 'content':
       return (
         <div className="text-center bg-gray-800 p-8 rounded-2xl border border-gray-700 w-full max-w-sm">
           {slide.content.title && (

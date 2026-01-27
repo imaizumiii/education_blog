@@ -66,11 +66,10 @@ The vertical force just lifts it a little.
 ---
 
 # Concept
-## Vector Components (力の分解)
+## 力の分解
 
 [Image: Force Decomposition]
 斜めの力 ($F$) は、横 ($F_x$) と縦 ($F_y$) に分解できます。
-箱を動かすのは $F_x$ だけです。
 
 ---
 
