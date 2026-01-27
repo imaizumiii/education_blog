@@ -54,7 +54,7 @@ export const LessonViewer: React.FC<LessonViewerProps> = ({ data, onComplete }) 
       opacity: 1,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 30
       }
@@ -121,8 +121,9 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
     const cleanText = text.replace('[Image: Force Decomposition]', '').trim();
     if (!cleanText) return null;
     
+    // 改行コードで分割し、行ごとにレンダリング
     return cleanText.split('\n').map((line, i) => (
-      <div key={i} className="mb-2">
+      <div key={i} className="min-h-[1.5em]"> {/* 空行でも高さが確保されるように */}
         <MathRenderer text={line} />
       </div>
     ));
@@ -151,7 +152,7 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
+            transition={{ delay: 0.2, type: "spring" as const }}
             className="w-24 h-24 bg-teal-500 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-lg shadow-teal-500/30"
           >
             <Star className="w-12 h-12 text-white" fill="currentColor" />
@@ -219,21 +220,34 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
             transition={{ delay: 0.2 }}
           >
             <div className="text-2xl font-medium leading-relaxed mb-2">
-              <MathRenderer text={slide.content.english || ''} />
+              {/* 英語部分も改行対応 */}
+              {slide.content.english && slide.content.english.split('\n').map((line, i) => (
+                <div key={i} className="min-h-[1.2em]">
+                   <MathRenderer text={line} />
+                </div>
+              ))}
             </div>
             <button className="absolute top-4 right-4 text-gray-400 hover:text-teal-600 transition-colors">
               <Volume2 className="w-5 h-5" />
             </button>
           </motion.div>
 
-          <motion.div
-            className="bg-gray-800 p-4 rounded-xl text-gray-300 text-lg"
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            {slide.content.japanese}
-          </motion.div>
+          {/* 日本語訳が存在する場合のみ表示 */}
+          {slide.content.japanese && slide.content.japanese.trim() !== '' && (
+            <motion.div
+              className="bg-gray-800 p-4 rounded-xl text-gray-300 text-lg"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              {/* 日本語部分も改行対応 */}
+              {slide.content.japanese.split('\n').map((line, i) => (
+                <div key={i} className="min-h-[1.5em]">
+                  {line}
+                </div>
+              ))}
+            </motion.div>
+          )}
         </div>
       );
 

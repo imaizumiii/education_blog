@@ -44,16 +44,22 @@ export function parseLessonMarkdown(markdown: string): LessonData {
     // スライドタイプの判定ロジック
     
     // 会話 (Dialogue)
-    // **Speaker** で始まる行がある場合
-    const speakerMatch = slideLines[0].match(/^\*\*(.*)\*\*$/);
+    // ***Speaker*** で始まる行がある場合 (アスタリスク3つに変更)
+    const speakerMatch = slideLines[0].match(/^\*\*\*(.*)\*\*\*$/);
     if (speakerMatch) {
+      // 本文全体を取得（1行目の話者名を除く）
+      const fullText = slideLines.slice(1).join('\n');
+      
+      // === で英語と日本語を分割
+      const [englishPart, japanesePart] = fullText.split('===');
+
       return {
         id: `slide-${index}`,
         type: 'dialogue',
         content: {
-          speaker: speakerMatch[1],
-          english: slideLines[1] || '',
-          japanese: slideLines.slice(2).join('\n').replace(/[()]/g, '') || ''
+          speaker: speakerMatch[1].trim(),
+          english: englishPart ? englishPart.trim() : '',
+          japanese: japanesePart ? japanesePart.trim() : ''
         }
       };
     }

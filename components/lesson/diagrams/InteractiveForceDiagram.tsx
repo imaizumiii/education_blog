@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 
 export const InteractiveForceDiagram = () => {
   const [angle, setAngle] = useState(45); // 角度の初期値
-  const length = 150; // 矢印の長さ
+  const length = 220; // 矢印の長さ (さらに少し長く)
   
-  // SVGの中心設定
+  // SVGの設定
   const svgWidth = 350;
   const svgHeight = 300;
-  const startX = svgWidth / 2; // 中心
-  const startY = 250; // 下の方
+  
+  // 原点 (始点) をさらに左下に配置
+  const startX = 30; 
+  const startY = 270;
 
   // 角度をラジアンに変換
   const radians = (angle * Math.PI) / 180;
@@ -26,48 +28,47 @@ export const InteractiveForceDiagram = () => {
   const fyEndY = startY - length * Math.sin(radians);
 
   // 効率（%）の計算
-  const efficiency = Math.round(Math.abs(Math.cos(radians)) * 100);
+  const efficiency = Math.round(Math.cos(radians) * 100);
 
   return (
     <div className="w-full flex flex-col items-center gap-4">
-      {/* SVGエリア */}
-      <div className="bg-gray-800 p-4 rounded-xl w-full max-w-sm aspect-[4/3] relative overflow-hidden select-none border border-gray-700">
+      {/* SVGエリア: 背景白に変更 */}
+      <div className="bg-white p-4 rounded-xl w-full max-w-sm aspect-[4/3] relative overflow-hidden select-none border border-gray-200 shadow-sm">
         <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full h-full">
-          {/* 1. 矢印の先端の形を定義 (defs) - 小さくしました */}
           <defs>
-            {/* 青い矢印 */}
             <marker id="arrow-blue" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
               <polygon points="0 0, 7 2.5, 0 5" fill="#3B82F6" />
             </marker>
-            {/* 緑の矢印 */}
             <marker id="arrow-green" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
               <polygon points="0 0, 7 2.5, 0 5" fill="#10B981" />
             </marker>
-            {/* 赤の矢印 */}
             <marker id="arrow-red" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
               <polygon points="0 0, 7 2.5, 0 5" fill="#EF4444" />
             </marker>
           </defs>
 
-          {/* ガイドの半円 */}
+          {/* ガイドの扇形: 円を大きく */}
           <path 
-            d={`M ${startX - length} ${startY} A ${length} ${length} 0 0 1 ${startX + length} ${startY}`} 
-            stroke="#374151" 
+            d={`M ${startX + length} ${startY} A ${length} ${length} 0 0 0 ${startX} ${startY - length}`} 
+            stroke="#E5E7EB" 
             strokeWidth="1" 
             strokeDasharray="4,4"
             fill="none" 
           />
-          <line x1={startX - length - 20} y1={startY} x2={startX + length + 20} y2={startY} stroke="#374151" strokeWidth="1" />
+          {/* 軸線 */}
+          <line x1={startX} y1={startY} x2={svgWidth} y2={startY} stroke="#E5E7EB" strokeWidth="1" />
+          <line x1={startX} y1={startY} x2={startX} y2={0} stroke="#E5E7EB" strokeWidth="1" />
 
-          {/* 荷物 (中心に配置) */}
+          {/* 荷物: 大きくしました (40x30 -> 60x45) */}
           <rect 
-            x={startX - 20} 
-            y={startY - 15} 
-            width="40" 
-            height="30" 
-            fill="#4B5563" 
-            rx="4" 
+            x={startX - 30} 
+            y={startY - 22.5} 
+            width="60" 
+            height="45" 
+            fill="#9CA3AF" 
+            rx="6" 
           />
+          <text x={startX} y={startY + 5} textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">BOX</text>
 
           {/* Fx (水平方向の力) */}
           <motion.line 
@@ -79,7 +80,7 @@ export const InteractiveForceDiagram = () => {
             animate={{ x2: fxEndX }}
           />
           <motion.text 
-            fill="#10B981" fontSize="16" fontWeight="bold" // 文字サイズ変更: 12 -> 14
+            fill="#10B981" fontSize="16" fontWeight="bold"
             animate={{ x: startX + (fxEndX - startX) / 2, y: startY + 25 }}
           >
             Fx
@@ -95,22 +96,21 @@ export const InteractiveForceDiagram = () => {
             animate={{ y2: fyEndY }}
           />
           <motion.text 
-            x={startX + 10} 
-            fill="#EF4444" fontSize="16" fontWeight="bold" // 文字サイズ変更: 12 -> 14
-            animate={{ y: startY - (startY - fyEndY) / 2 }}
+            fill="#EF4444" fontSize="16" fontWeight="bold"
+            animate={{ x: startX - 30, y: startY - (startY - fyEndY) / 2 }}
           >
             Fy
           </motion.text>
 
-          {/* 補助線: Fの先端から各成分へ (長方形を作る) */}
+          {/* 補助線 */}
           <motion.line 
             x1={endX} y1={endY} x2={fxEndX} y2={fxEndY}
-            stroke="#4B5563" strokeWidth="1" strokeDasharray="4,4"
+            stroke="#9CA3AF" strokeWidth="1" strokeDasharray="4,4"
             animate={{ x1: endX, y1: endY, x2: fxEndX, y2: fxEndY }}
           />
           <motion.line 
             x1={endX} y1={endY} x2={fyEndX} y2={fyEndY}
-            stroke="#4B5563" strokeWidth="1" strokeDasharray="4,4"
+            stroke="#9CA3AF" strokeWidth="1" strokeDasharray="4,4"
             animate={{ x1: endX, y1: endY, x2: fyEndX, y2: fyEndY }}
           />
 
@@ -124,40 +124,40 @@ export const InteractiveForceDiagram = () => {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           />
           <motion.text 
-            fill="#3B82F6" fontSize="20" fontWeight="bold" // 文字サイズ変更: 14 -> 16
+            fill="#3B82F6" fontSize="20" fontWeight="bold"
             animate={{ x: startX + (endX - startX) / 2 - 10, y: startY + (endY - startY) / 2 - 10 }}
           >
             F
           </motion.text>
 
-          {/* 角度表示 */}
+          {/* 角度の円弧: 大きくしました (40 -> 60) */}
           <path 
-            d={`M ${startX + 30} ${startY} A 30 30 0 0 0 ${startX + 30 * Math.cos(radians)} ${startY - 30 * Math.sin(radians)}`}
-            stroke="#9CA3AF" fill="none"
+            d={`M ${startX + 60} ${startY} A 60 60 0 0 0 ${startX + 60 * Math.cos(radians)} ${startY - 60 * Math.sin(radians)}`}
+            stroke="#6B7280" fill="none"
           />
-          <text x={startX + 40} y={startY - 5} fill="#9CA3AF" fontSize="14">θ = {angle}°</text>
+          <text x={startX + 70} y={startY - 15} fill="#6B7280" fontSize="14">θ = {angle}°</text>
 
         </svg>
 
-        {/* 右上の情報ボックス */}
-        <div className="absolute top-2 right-2 text-xs font-mono text-gray-400">
-           Eff: {efficiency}%
+        {/* 右上の情報ボックス: 日本語に変更 */}
+        <div className="absolute top-2 right-2 bg-white/90 p-2 rounded-lg shadow-sm border border-gray-100 text-sm font-mono text-gray-600">
+           効率: <span className="text-green-600 font-bold">{efficiency}%</span>
         </div>
       </div>
 
       {/* コントロールパネル */}
-      <div className="w-full max-w-xs bg-gray-800/50 p-2 rounded-xl">
-        <div className="flex justify-between text-sm mb-1 text-gray-300 px-1">
-          <span className="font-mono">θ (Angle)</span>
-          <span>{angle}°</span>
+      <div className="w-full max-w-xs bg-gray-800 p-3 rounded-xl shadow-lg">
+        <div className="flex justify-between text-sm mb-2 text-gray-300 px-1">
+          <span className="font-mono text-teal-400">θ (Angle)</span>
+          <span className="font-bold">{angle}°</span>
         </div>
         <input 
           type="range" 
           min="0" 
-          max="180" 
+          max="90" 
           value={angle} 
           onChange={(e) => setAngle(Number(e.target.value))}
-          className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-teal-500"
+          className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-teal-500 hover:accent-teal-400 transition-all"
         />
       </div>
     </div>
