@@ -1,0 +1,178 @@
+{
+  "title": "$\\sin\\theta$ と $\\cos\\theta$",
+  "description": "sinとcosとは何かについて解説します。",
+  "duration": "3 min",
+  "level": "Medium",
+  "slides": [
+    {
+      "id": "slide-0",
+      "type": "title",
+      "content": {
+        "title": "数学Ⅱ",
+        "subtitle": "$\\sin\\theta$ と $\\cos\\theta$",
+        "text": ""
+      }
+    },
+    {
+      "id": "slide-1",
+      "type": "scene",
+      "content": {
+        "title": "Scene 1",
+        "subtitle": "重い箱",
+        "text": "Kenが床にある重い箱を、ロープをつけて斜め上に引っ張っています。"
+      }
+    },
+    {
+      "id": "slide-2",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Ken",
+        "english": "This box is too heavy!\nI'm pulling it as hard as I can!",
+        "japanese": "この箱、重すぎるよ！\n一生懸命引っ張ってるのに！"
+      }
+    },
+    {
+      "id": "slide-3",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "You are pulling it **diagonally**.\nNot all your force is moving the box forward.",
+        "japanese": "斜めに引っ張ってるでしょ。\n力の全てが箱を前に進めるのに使われているわけじゃないのよ。"
+      }
+    },
+    {
+      "id": "slide-4",
+      "type": "key-phrase",
+      "content": {
+        "title": "Key Phrase 1",
+        "subtitle": "Diagonally",
+        "text": "「斜めに」\n対角線 (Diagonal) の副詞形です。\nHorizontal (水平) や Vertical (垂直) とセットで覚えましょう。"
+      }
+    },
+    {
+      "id": "slide-5",
+      "type": "scene",
+      "content": {
+        "title": "Scene 2",
+        "subtitle": "力の無駄遣い？",
+        "text": ""
+      }
+    },
+    {
+      "id": "slide-6",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Ken",
+        "english": "What do you mean?",
+        "japanese": "どういうこと？"
+      }
+    },
+    {
+      "id": "slide-7",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "Your force is split into two parts:\n**Horizontal** and **Vertical**.",
+        "japanese": "あなたの力は2つに分かれているの。\n「水平方向」と「垂直方向」にね。"
+      }
+    },
+    {
+      "id": "slide-8",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "Only the horizontal force moves the box.\nThe vertical force just lifts it a little.",
+        "japanese": "水平方向の力だけが箱を動かすの。\n垂直方向の力は、箱を少し持ち上げているだけ。"
+      }
+    },
+    {
+      "id": "slide-9",
+      "type": "content",
+      "content": {
+        "title": "Concept",
+        "subtitle": "力の分解",
+        "text": "[Image: Force Decomposition]\n斜めの力 ($F$) は、横 ($F_x$) と縦 ($F_y$) に分解できます。\n箱を動かすのは $F_x$ だけです。"
+      }
+    },
+    {
+      "id": "slide-10",
+      "type": "scene",
+      "content": {
+        "title": "Scene 3",
+        "subtitle": "どれくらいの力？",
+        "text": ""
+      }
+    },
+    {
+      "id": "slide-11",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Ken",
+        "english": "So, how much force is actually moving the box?",
+        "japanese": "じゃあ、実際どれくらいの力が箱を動かしているの？"
+      }
+    },
+    {
+      "id": "slide-12",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "That's where **Cosine** comes in.\nTo find the horizontal force, we use Cosine.",
+        "japanese": "そこで「コサイン」の出番よ。\n水平方向の力を知るために、コサインを使うの。"
+      }
+    },
+    {
+      "id": "slide-13",
+      "type": "key-phrase",
+      "content": {
+        "title": "Key Phrase 2",
+        "subtitle": "$F_x = F \\cos(\\theta)$",
+        "text": "水平方向の力 = 全体の力 × コサイン(角度)\n隣の辺 (Adjacent) を求めるときは Cosine を使います。"
+      }
+    },
+    {
+      "id": "slide-14",
+      "type": "scene",
+      "content": {
+        "title": "Scene 4",
+        "subtitle": "計算してみよう",
+        "text": ""
+      }
+    },
+    {
+      "id": "slide-15",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "If you pull with 100 Newtons at a 60-degree angle...\n$\\cos(60^{\\circ})$ is $0.5$. So...",
+        "japanese": "もし60度の角度で100ニュートンの力で引いているとしたら...\ncos 60°は0.5だから..."
+      }
+    },
+    {
+      "id": "slide-16",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Ken",
+        "english": "$100 \\times 0.5$ is 50!\nOnly half my force?!",
+        "japanese": "100かける0.5で50！\n力の半分しか使えてないってこと？！"
+      }
+    },
+    {
+      "id": "slide-17",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "Exactly. You should pull it more horizontally.",
+        "japanese": "その通り。もっと水平に引くべきね。"
+      }
+    },
+    {
+      "id": "slide-18",
+      "type": "completion",
+      "content": {
+        "title": "Good Job!",
+        "text": "Lesson 2 Complete!\n物理と数学のつながりが少し見えましたか？"
+      }
+    }
+  ]
+}

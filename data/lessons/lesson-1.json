@@ -1,0 +1,106 @@
+{
+  "title": "Lesson 1: はじめまして",
+  "description": "自己紹介の基本表現を学びましょう。",
+  "duration": "10 min",
+  "level": "Easy",
+  "slides": [
+    {
+      "id": "slide-0",
+      "type": "title",
+      "content": {
+        "title": "Lesson 1",
+        "subtitle": "はじめまして",
+        "text": "自己紹介の基本表現を学びましょう。"
+      }
+    },
+    {
+      "id": "slide-1",
+      "type": "scene",
+      "content": {
+        "title": "Scene 1",
+        "subtitle": "初対面の挨拶",
+        "text": "KenとEmmaの会話を見てみましょう。"
+      }
+    },
+    {
+      "id": "slide-2",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Ken",
+        "english": "Hello! Nice to meet you.",
+        "japanese": "(こんにちは！はじめまして。)"
+      }
+    },
+    {
+      "id": "slide-3",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "Hi! Nice to meet you too.\nI'm Emma. What's your name?",
+        "japanese": "(やあ！こちらこそはじめまして。\nエマです。あなたの名前は？)"
+      }
+    },
+    {
+      "id": "slide-4",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Ken",
+        "english": "I'm Ken. I'm from Japan.",
+        "japanese": "(僕はケンです。日本から来ました。)"
+      }
+    },
+    {
+      "id": "slide-5",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Emma",
+        "english": "Nice to meet you, Ken.\nI'm from Canada. Are you a student?",
+        "japanese": "(はじめまして、ケン。私はカナダ出身よ。あなたは学生？)"
+      }
+    },
+    {
+      "id": "slide-6",
+      "type": "dialogue",
+      "content": {
+        "speaker": "Ken",
+        "english": "Yes, I am. I study English.",
+        "japanese": "(はい、そうです。英語を勉強しています。)"
+      }
+    },
+    {
+      "id": "slide-7",
+      "type": "key-phrase",
+      "content": {
+        "title": "Key Phrase 1",
+        "subtitle": "Nice to meet you.",
+        "text": "「はじめまして」\n初対面の挨拶の定番です。"
+      }
+    },
+    {
+      "id": "slide-8",
+      "type": "key-phrase",
+      "content": {
+        "title": "Key Phrase 2",
+        "subtitle": "I'm from [Place].",
+        "text": "「私は[場所]出身です」\n自分の出身地を伝える表現です。"
+      }
+    },
+    {
+      "id": "slide-9",
+      "type": "key-phrase",
+      "content": {
+        "title": "Key Phrase 3",
+        "subtitle": "Are you a [Occupation]?",
+        "text": "「あなたは[職業]ですか？」\n相手の職業や身分を尋ねる表現です。"
+      }
+    },
+    {
+      "id": "slide-10",
+      "type": "completion",
+      "content": {
+        "title": "Good Job!",
+        "text": "Lesson 1 はこれで終了です。\nお疲れ様でした！"
+      }
+    }
+  ]
+}

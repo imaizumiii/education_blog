@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
-import { LessonData, LessonSlide } from '@/utils/lessonParser';
+import { LessonData, LessonSlide } from '@/types/lesson';
 import { ChevronDown, ChevronUp, Star, MessageCircle, Volume2 } from 'lucide-react';
 import { MathRenderer } from './MathRenderer';
 import { InteractiveForceDiagram } from './diagrams/InteractiveForceDiagram';
@@ -13,6 +13,7 @@ interface LessonViewerProps {
 }
 
 export const LessonViewer: React.FC<LessonViewerProps> = ({ data, onComplete }) => {
+  // ... (以下変更なし)
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0); // 1 for down (next), -1 for up (prev)
 
@@ -121,9 +122,8 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
     const cleanText = text.replace('[Image: Force Decomposition]', '').trim();
     if (!cleanText) return null;
     
-    // 改行コードで分割し、行ごとにレンダリング
     return cleanText.split('\n').map((line, i) => (
-      <div key={i} className="min-h-[1.5em]"> {/* 空行でも高さが確保されるように */}
+      <div key={i} className="min-h-[1.5em]">
         <MathRenderer text={line} />
       </div>
     ));
@@ -157,22 +157,22 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
           >
             <Star className="w-12 h-12 text-white" fill="currentColor" />
           </motion.div>
-          <motion.h1 
+          <motion.div 
             className="text-4xl font-bold mb-4"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            {slide.content.title}
-          </motion.h1>
-          <motion.p 
+            <MathRenderer text={slide.content.title || ''} />
+          </motion.div>
+          <motion.div 
             className="text-xl text-gray-300"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            {slide.content.subtitle}
-          </motion.p>
+             <MathRenderer text={slide.content.subtitle || ''} />
+          </motion.div>
           <motion.div
             className="mt-6 text-gray-400"
             initial={{ opacity: 0 }}
@@ -189,10 +189,14 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
       return (
         <div className="text-center bg-gray-800 p-8 rounded-2xl border border-gray-700 w-full max-w-sm">
           {slide.content.title && (
-            <h2 className="text-teal-400 text-sm font-bold uppercase tracking-widest mb-2">{slide.content.title}</h2>
+            <div className="text-teal-400 text-sm font-bold uppercase tracking-widest mb-2">
+               <MathRenderer text={slide.content.title} />
+            </div>
           )}
           {slide.content.subtitle && (
-            <h3 className="text-2xl font-bold mb-4">{slide.content.subtitle}</h3>
+            <div className="text-2xl font-bold mb-4">
+              <MathRenderer text={slide.content.subtitle} />
+            </div>
           )}
           <div className="text-gray-400">
             {renderImage(slide.content.text)}
@@ -220,7 +224,6 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
             transition={{ delay: 0.2 }}
           >
             <div className="text-2xl font-medium leading-relaxed mb-2">
-              {/* 英語部分も改行対応 */}
               {slide.content.english && slide.content.english.split('\n').map((line, i) => (
                 <div key={i} className="min-h-[1.2em]">
                    <MathRenderer text={line} />
@@ -232,7 +235,6 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
             </button>
           </motion.div>
 
-          {/* 日本語訳が存在する場合のみ表示 */}
           {slide.content.japanese && slide.content.japanese.trim() !== '' && (
             <motion.div
               className="bg-gray-800 p-4 rounded-xl text-gray-300 text-lg"
@@ -240,7 +242,6 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              {/* 日本語部分も改行対応 */}
               {slide.content.japanese.split('\n').map((line, i) => (
                 <div key={i} className="min-h-[1.5em]">
                   {line}
@@ -284,8 +285,12 @@ const SlideContent: React.FC<{ slide: LessonSlide }> = ({ slide }) => {
           >
             🎉
           </motion.div>
-          <h2 className="text-3xl font-bold mb-4">{slide.content.title}</h2>
-          <p className="text-xl text-gray-400 mb-8">{slide.content.text}</p>
+          <h2 className="text-3xl font-bold mb-4">
+             <MathRenderer text={slide.content.title || ''} />
+          </h2>
+          <div className="text-xl text-gray-400 mb-8">
+             {renderText(slide.content.text)}
+          </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

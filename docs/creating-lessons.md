@@ -16,7 +16,7 @@
 title: "Lesson 2: 挨拶と日常会話"
 description: "朝、昼、晩の挨拶や、別れ際の表現を学びます。"
 duration: "15 min"
-level: "Beginner"
+level: "Easy"
 ---
 ```
 
@@ -78,7 +78,7 @@ Good morning, Ms. Smith.
 title: "Lesson Sample"
 description: "サンプルのレッスンです"
 duration: "5 min"
-level: "Beginner"
+level: "Easy"
 ---
 
 # Lesson 1

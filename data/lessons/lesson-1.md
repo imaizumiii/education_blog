@@ -2,7 +2,7 @@
 title: "Lesson 1: はじめまして"
 description: "自己紹介の基本表現を学びましょう。"
 duration: "10 min"
-level: "Beginner"
+level: "Easy"
 ---
 
 # Lesson 1
